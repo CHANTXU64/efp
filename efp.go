@@ -3,13 +3,25 @@
 // https://ewbi.blogs.com/develops/2004/12/excel_formula_p.html
 //
 // Go language version by Ri Xu: https://xuri.me
-package efp
+package main
 
 import (
 	"regexp"
 	"strconv"
 	"strings"
+  "os"
 )
+
+func main () {
+  parser := ExcelParser()
+  tokens := parser.Parse(os.Args[1])
+  s := ""
+  for i := 0; i < len(tokens); i++ {
+    token := tokens[i]
+    s += token.TType + "\t" + token.TSubType + "\t" + token.TValue + "\n"
+  }
+  print(s)
+}
 
 // QuoteDouble, QuoteSingle and other's constants are token definitions.
 const (

@@ -1,4 +1,4 @@
-package efp
+package main
 
 import "testing"
 
